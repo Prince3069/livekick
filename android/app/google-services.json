@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "567112936187",
+    "project_id": "livekick-c2d11",
+    "storage_bucket": "livekick-c2d11.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:567112936187:android:469d3f0d81ac0dab231e5e",
+        "android_client_info": {
+          "package_name": "com.example.livekick"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyJ8P5BqgqFS7TdtvNJ07kk6LFaS2iQ84"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
