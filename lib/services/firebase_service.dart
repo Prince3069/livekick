@@ -144,7 +144,7 @@ class FirebaseService {
     }, SetOptions(merge: true));
   }
 
-  Future<String> uploadProfileImage(String filePath) async {
+  Future<String> uploadProfileImage(String filePath, dynamic _storage) async {
     final user = _auth.currentUser;
     if (user == null) {
       throw Exception('User not authenticated');
