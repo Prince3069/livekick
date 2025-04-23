@@ -1,4 +1,6 @@
 // lib/widgets/featured_match_card.dart
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:livekick/models/match.dart';
 

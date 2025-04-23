@@ -1,4 +1,6 @@
 // lib/widgets/live_match_view.dart
+// ignore_for_file: prefer_const_constructors, deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:livekick/models/match.dart';
 

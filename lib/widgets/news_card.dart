@@ -1,4 +1,6 @@
 // lib/widgets/news_card.dart
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:livekick/models/news.dart';
 import 'package:timeago/timeago.dart' as timeago;
