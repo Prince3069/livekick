@@ -1,70 +1,70 @@
-// ===============================
-// MAIN.DART - Application Entry Point
-// ===============================
-
+// lib/main.dart
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:livekick/config/routes.dart';
-import 'package:livekick/config/theme.dart';
-import 'package:livekick/core/blocs/auth/auth_bloc.dart';
-import 'package:livekick/core/blocs/matches/matches_bloc.dart';
-import 'package:livekick/core/blocs/highlights/highlights_bloc.dart';
-import 'package:livekick/core/blocs/stats/stats_bloc.dart';
-import 'package:livekick/core/services/api_service.dart';
-import 'package:livekick/core/services/firebase_service.dart';
-import 'package:livekick/core/services/local_storage_service.dart';
+import 'package:livekick/screens/home_screen.dart';
+import 'package:livekick/screens/matches_screen.dart';
+import 'package:livekick/screens/live_screen.dart';
+import 'package:livekick/screens/profile_screen.dart';
+import 'package:livekick/theme/app_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  await LocalStorageService.init();
-
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        Provider<ApiService>(create: (_) => ApiService()),
-        Provider<FirebaseService>(create: (_) => FirebaseService()),
-      ],
-      child: MultiBlocProvider(
-        providers: [
-          BlocProvider<AuthBloc>(
-            create:
-                (context) => AuthBloc(
-                  firebaseService: context.read<FirebaseService>(),
-                  localStorageService: LocalStorageService(),
-                )..add(AuthCheckStatusEvent()),
+    return MaterialApp(
+      title: 'LiveKick',
+      debugShowCheckedModeBanner: false,
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: ThemeMode.system,
+      home: MainScreen(),
+    );
+  }
+}
+
+class MainScreen extends StatefulWidget {
+  @override
+  _MainScreenState createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+  int _currentIndex = 0;
+
+  final List<Widget> _screens = [
+    HomeScreen(),
+    MatchesScreen(),
+    LiveScreen(),
+    ProfileScreen(),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: IndexedStack(index: _currentIndex, children: _screens),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+        selectedItemColor: Theme.of(context).primaryColor,
+        unselectedItemColor: Colors.grey,
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.sports_soccer),
+            label: 'Matches',
           ),
-          BlocProvider<MatchesBloc>(
-            create:
-                (context) =>
-                    MatchesBloc(apiService: context.read<ApiService>()),
-          ),
-          BlocProvider<HighlightsBloc>(
-            create:
-                (context) =>
-                    HighlightsBloc(apiService: context.read<ApiService>()),
-          ),
-          BlocProvider<StatsBloc>(
-            create:
-                (context) => StatsBloc(apiService: context.read<ApiService>()),
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.live_tv), label: 'Live'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
-        child: MaterialApp(
-          title: 'LiveKick',
-          debugShowCheckedModeBanner: false,
-          theme: AppTheme.lightTheme,
-          darkTheme: AppTheme.darkTheme,
-          themeMode: ThemsseMode.system,
-          initialRoute: AppRoutes.splash,
-          onGenerateRoute: AppRoutes.onGenerateRoute,
-        ),
       ),
     );
   }
