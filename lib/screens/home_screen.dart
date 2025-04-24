@@ -223,7 +223,11 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              LeagueSelector(),
+              LeagueSelector(
+                leagues: [],
+                selectedLeagueId: null,
+                onLeagueSelected: (int) {},
+              ),
               SizedBox(height: 16),
 
               // Quick actions section
