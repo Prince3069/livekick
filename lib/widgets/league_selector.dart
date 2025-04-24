@@ -88,6 +88,47 @@
 //   }
 // }
 
+// // lib/widgets/league_selector.dart
+// import 'package:flutter/material.dart';
+// import 'package:livekick/models/odds.dart';
+
+// class LeagueSelector extends StatelessWidget {
+//   final List<LeagueInfo> leagues;
+//   final int selectedLeagueId;
+//   final Function(int) onLeagueSelected;
+
+//   const LeagueSelector({
+//     required this.leagues,
+//     required this.selectedLeagueId,
+//     required this.onLeagueSelected,
+//   });
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return DropdownButtonFormField<int>(
+//       decoration: InputDecoration(
+//         labelText: 'League',
+//         border: OutlineInputBorder(),
+//         contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+//       ),
+//       value: selectedLeagueId > 0 ? selectedLeagueId : null,
+//       hint: Text('Select League'),
+//       onChanged: (value) {
+//         if (value != null) {
+//           onLeagueSelected(value);
+//         }
+//       },
+//       items:
+//           leagues.map((league) {
+//             return DropdownMenuItem<int>(
+//               value: league.id,
+//               child: Text('${league.name} (${league.country})'),
+//             );
+//           }).toList(),
+//     );
+//   }
+// }
+
 // lib/widgets/league_selector.dart
 import 'package:flutter/material.dart';
 import 'package:livekick/models/odds.dart';
@@ -98,33 +139,43 @@ class LeagueSelector extends StatelessWidget {
   final Function(int) onLeagueSelected;
 
   const LeagueSelector({
+    Key? key,
     required this.leagues,
     required this.selectedLeagueId,
     required this.onLeagueSelected,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButtonFormField<int>(
-      decoration: InputDecoration(
-        labelText: 'League',
-        border: OutlineInputBorder(),
-        contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 12),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey.shade300),
+        borderRadius: BorderRadius.circular(8),
       ),
-      value: selectedLeagueId > 0 ? selectedLeagueId : null,
-      hint: Text('Select League'),
-      onChanged: (value) {
-        if (value != null) {
-          onLeagueSelected(value);
-        }
-      },
-      items:
-          leagues.map((league) {
-            return DropdownMenuItem<int>(
-              value: league.id,
-              child: Text('${league.name} (${league.country})'),
-            );
-          }).toList(),
+      child: DropdownButtonHideUnderline(
+        child: DropdownButton<int>(
+          isExpanded: true,
+          value: leagues.isNotEmpty ? selectedLeagueId : null,
+          hint: Text('Select League'),
+          items: [
+            // Add an "All Leagues" option
+            DropdownMenuItem<int>(value: 0, child: Text('All Leagues')),
+            // Add all available leagues
+            ...leagues.map(
+              (league) => DropdownMenuItem<int>(
+                value: league.id,
+                child: Text('${league.name} (${league.country})'),
+              ),
+            ),
+          ],
+          onChanged: (int? value) {
+            if (value != null) {
+              onLeagueSelected(value);
+            }
+          },
+        ),
+      ),
     );
   }
 }
