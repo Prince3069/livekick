@@ -1,4 +1,6 @@
 // lib/main.dart
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:livekick/screens/home_screen.dart';
@@ -6,6 +8,8 @@ import 'package:livekick/screens/matches_screen.dart';
 import 'package:livekick/screens/live_screen.dart';
 import 'package:livekick/screens/profile_screen.dart';
 import 'package:livekick/theme/app_theme.dart';
+// Add the OddsScreen route
+import 'package:livekick/screens/odds_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,6 +43,7 @@ class _MainScreenState extends State<MainScreen> {
     HomeScreen(),
     MatchesScreen(),
     LiveScreen(),
+    OddsScreen(),
     ProfileScreen(),
   ];
 
@@ -63,6 +68,11 @@ class _MainScreenState extends State<MainScreen> {
             label: 'Matches',
           ),
           BottomNavigationBarItem(icon: Icon(Icons.live_tv), label: 'Live'),
+          // Add a navigation item in your bottom navigation or drawer:
+          BottomNavigationBarItem(
+            icon: Icon(Icons.attach_money),
+            label: 'Odds',
+          ),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
       ),
