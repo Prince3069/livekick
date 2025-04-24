@@ -1,5 +1,7 @@
 // lib/repositories/league_repository.dart
-import 'package:livekick/models/league.dart';
+// import 'package:livekick/models/league.dart';
+import 'package:livekick/models/match.dart';
+import 'package:livekick/models/odds.dart';
 import 'package:livekick/services/rapid_api_service.dart';
 
 class LeagueRepository {
