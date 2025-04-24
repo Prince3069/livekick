@@ -78,7 +78,7 @@ flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
   image_path: "assets/images/app_icon.png"
-  min_sdk_android: 21
+  min_sdk_android: 23
 
 # Flutter native splash configuration
 flutter_native_splash:
@@ -90,15 +90,15 @@ flutter_native_splash:
 flutter:
   uses-material-design: true
 
-  assets:
-    - assets/images/
-    - assets/icons/
+  # assets:
+  #   - assets/images/
+  #   - assets/icons/
 
-  fonts:
-    - family: Poppins
-      fonts:
-        - asset: assets/fonts/Poppins-Regular.ttf
-        - asset: assets/fonts/Poppins-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/Poppins-Bold.ttf
-          weight: 700
+  # fonts:
+  #   - family: Poppins
+  #     fonts:
+  #       - asset: assets/fonts/Poppins-Regular.ttf
+  #       - asset: assets/fonts/Poppins-Medium.ttf
+  #         weight: 500
+  #       - asset: assets/fonts/Poppins-Bold.ttf
+  #         weight: 700
