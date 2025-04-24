@@ -225,7 +225,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               LeagueSelector(
                 leagues: [],
-                selectedLeagueId: null,
+                selectedLeagueId: -1,
                 onLeagueSelected: (int) {},
               ),
               SizedBox(height: 16),
