@@ -104,11 +104,10 @@ import 'package:livekick/models/match.dart';
 import 'package:livekick/models/news.dart';
 
 class RapidApiService {
-  static const String _baseUrl = 'https://api-football-v1.p.rapidapi.com/v2';
+  static const String _baseUrl = 'http://api.isportsapi.com';
   static const String _host = 'api-football-v1.p.rapidapi.com';
   // Replace with your actual API key from RapidAPI
-  static const String _apiKey =
-      '7c7ac2e306mshfb32caeb7da48aap1c34ccjsna4876363090b';
+  static const String _apiKey = 'LufplmSgcojrjFOr';
 
   // Singleton pattern
   static final RapidApiService _instance = RapidApiService._internal();
